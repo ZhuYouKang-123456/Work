@@ -1,5 +1,5 @@
 1) ：Check if CPU supports and enable virtualization (Intel VT-x / AMD-V)
-Windows
+Windows:
 Check support and status
 
 Press Win + X → Task Manager → Performance → CPU, look for Virtualization: Enabled/Disabled.
@@ -44,7 +44,7 @@ Intel Macs: VT-x is usually enabled by default.
 
 Apple Silicon (M1/M2/M3): No VT-x/AMD-V, instead use Apple Virtualization Framework (Parallels Desktop, UTM, Docker Desktop).
 
-2) ：Why is cloud computing successful? (3 Pros, 3 Cons)
+2) ：Why is cloud computing successful? (3 Pros, 3 Cons):
 Fundamentals: Elastic scalability, pay-as-you-go model, global infrastructure, and managed services reduce entry barriers.
 
 Pros
@@ -63,13 +63,13 @@ Compliance & data sovereignty: cross-border regulations.
 
 Unpredictable costs: elastic resources may grow uncontrollably.
 
-3) ：Primary function of a hypervisor
+3) ：Primary function of a hypervisor:
 To abstract and allocate hardware resources (CPU, memory, I/O) to multiple VMs, ensuring isolation, and to provide VM lifecycle management (create, start, pause, migrate, snapshot).
 
-4) ：What is a Virtual Machine (VM)?
+4) ：What is a Virtual Machine (VM)?:
 A software-simulated isolated computer environment, created by a hypervisor, that allows running a guest operating system and applications.
 
-5) ：Benefits of Virtual Machines
+5) ：Benefits of Virtual Machines:
 Isolation: workloads separated securely.
 
 Resource consolidation: multiple VMs on one host improve utilization.
@@ -80,7 +80,7 @@ Snapshots/Cloning: quick rollback or duplication.
 
 Multi-OS support: run different OS side by side.
 
-6) ：Five common use cases for VMs
+6) ：Five common use cases for VMs:
 Development & testing environments.
 
 Running legacy applications.
@@ -100,7 +100,7 @@ Answer: c) Virtual machines run independently and are isolated from each other a
 9) ：What is the benefit of VM portability?
 Answer: c) It allows VMs to be moved between different physical machines with compatible hypervisors.
 
-10) ：Purpose of cloning a VM
+10) ：Purpose of cloning a VM:
 To quickly create an identical copy of an existing VM (including OS, applications, and configurations), useful for scaling, testing, backup, or training.
 
 Types: Full Clone and Linked Clone.
