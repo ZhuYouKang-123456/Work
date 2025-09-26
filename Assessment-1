@@ -1,0 +1,131 @@
+## In-Class Assessment 1
+
+### (a) Three Primary Cloud Service Models in Cloud Computing
+
+#### Infrastructure as a Service (IaaS)
+**Description**: IaaS provides virtualized computing resources as services, including servers, storage, networking, and other fundamental infrastructure components. Users can deploy and run arbitrary software on these infrastructure resources.
+
+**Software Development Applications**:
+- **Development Testing Environments**: Using AWS EC2 or Azure Virtual Machines to quickly create temporary development and testing environments
+- **Continuous Integration**: Dynamically creating build nodes on Google Compute Engine to run CI/CD pipelines
+- **Big Data Processing**: Deploying Hadoop clusters on Alibaba Cloud ECS for data analysis and processing
+
+#### Platform as a Service (PaaS)
+**Description**: PaaS provides application development and runtime platforms, including operating systems, databases, web servers, and other middleware. Developers only need to focus on the application code itself.
+
+**Software Development Applications**:
+- **Web Application Deployment**: Using Heroku or Google App Engine to deploy Django, Node.js applications
+- **Database Services**: Utilizing AWS RDS or Azure SQL Database for database management without worrying about underlying maintenance
+- **Microservices Architecture**: Deploying and managing microservices applications on Cloud Foundry or OpenShift
+
+#### Software as a Service (SaaS)
+**Description**: SaaS provides complete software applications as services that users can access through web browsers without installation and maintenance.
+
+**Software Development Applications**:
+- **Team Collaboration**: Using GitHub Codespaces for cloud-based development without configuring local environments
+- **Project Management**: Managing software development projects in Jira Cloud or Azure DevOps
+- **Code Quality**: Using SonarCloud for code quality analysis integrated into development workflows
+
+---
+
+### (b) Docker and Containerization Technology
+
+#### What is Docker?
+Docker is an open-source containerization platform that enables developers to package applications and their dependencies into lightweight, portable containers. Containers run in isolated environments, ensuring consistent application behavior across different environments.
+
+#### Usage Scenario: Microservices Architecture Development
+Scenario for using Docker in developing an e-commerce platform with microservices architecture:
+
+**Scenario Description**:
+Developing an e-commerce platform containing user service, order service, payment service, and product service. Each service is developed by different teams using different technology stacks (such as Spring Boot, Node.js, Python Flask).
+
+#### Containerization Contributions:
+
+**Development Phase**:
+- **Environment Consistency**: Each developer uses identical Docker images, avoiding "it works on my machine" issues
+- **Rapid Startup**: `docker-compose up` one-command startup for all dependent services (databases, message queues, etc.)
+- **Technology Stack Isolation**: Different services can use different technology stacks without interference
+
+**Deployment Phase**:
+- **Continuous Integration**: CI pipelines build Docker images ensuring consistent build artifacts
+- **Rolling Updates**: Using Docker Swarm or Kubernetes for zero-downtime deployments
+- **Resource Optimization**: Containers share OS kernel, making them more lightweight than VMs and improving resource utilization
+
+**Specific Advantages**:
+1. **Dependency Management**: Each service contains complete runtime environment, avoiding environment conflicts
+2. **Version Control**: Docker images are versioned, supporting rollback and auditing
+3. **Scalability**: Quickly replicate container instances to handle traffic spikes
+4. **Multi-cloud Deployment**: Containers can run on any cloud platform supporting Docker
+
+---
+
+### (c) n8n Deployment with Docker Explanation
+
+#### Docker Command Explanation
+
+```bash
+# Pull n8n latest image
+docker pull n8nio/n8n
+
+# Run n8n container
+docker run -d \
+  --name n8n \
+  -p 5678:5678 \
+  -v n8n_data:/home/node/.n8n \
+  -e N8N_BASIC_AUTH_ACTIVE=false \
+  n8nio/n8n
+```
+
+**Detailed Command Explanation**:
+
+1. **`docker pull n8nio/n8n`**
+   - Downloads the official n8n image from Docker Hub
+   - Ensures getting the latest version with all feature updates
+
+2. **`docker run -d`**
+   - `-d`: Detached mode, runs container in background
+   - Allows terminal to remain usable without being occupied by container output
+
+3. **`--name n8n`**
+   - Assigns the name "n8n" to the container for easier management
+   - Enables commands like `docker stop n8n` or `docker logs n8n`
+
+4. **`-p 5678:5678`**
+   - Port mapping: `host-port:container-port`
+   - Maps container's internal port 5678 to host's port 5678
+   - Allows access to n8n web interface via http://127.0.0.1:5678
+
+5. **`-v n8n_data:/home/node/.n8n`**
+   - Volume mount: `volume-name:container-path`
+   - `n8n_data`: Creates Docker volume named n8n_data for persistent data storage
+   - `/home/node/.n8n`: n8n's configuration and data storage path inside container
+   - Ensures workflows, configurations, and data persist after container restarts
+
+6. **`-e N8N_BASIC_AUTH_ACTIVE=false`**
+   - Environment variable setting, disables basic authentication
+   - Simplifies access for local development environment, no username/password required
+   - Should be set to true with proper authentication configured in production
+
+7. **`n8nio/n8n`**
+   - Specifies the image name to run
+   - Uses the latest version image pulled earlier
+
+#### Deployment Verification
+After deployment, access n8n interface in web browser at: **http://127.0.0.1:5678**
+
+The setup screen confirms successful deployment of n8n workflow automation platform, where users can create and manage automation workflows.
+
+#### Container Management Commands
+```bash
+# Check container status
+docker ps
+
+# View container logs
+docker logs n8n
+
+# Stop and start container
+docker stop n8n
+docker start n8n
+```
+
+This deployment provides a complete n8n workflow automation platform for creating various automation tasks and integrating different services.
